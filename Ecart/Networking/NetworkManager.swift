@@ -13,7 +13,6 @@ enum NetworkError: Error {
     case jsonParsingError
 }
 
-
 class NetworkManager {
     
     static let shared = NetworkManager()
@@ -44,7 +43,9 @@ class NetworkManager {
             do {
                 let productList = try JSONDecoder().decode(ProductList.self, from: data)
             
-                completion(.success(productList.products))
+                DispatchQueue.main.async {
+                    completion(.success(productList.products))
+                }
             } catch {
                 completion(.failure(.jsonParsingError))
             }
