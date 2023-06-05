@@ -18,6 +18,7 @@ struct ProductList: Decodable {
 struct Product: Decodable {
     let title: String
     let imageURL: String
+    let ratingCount: Double
     let price: [Price]
 }
 

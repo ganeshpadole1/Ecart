@@ -51,5 +51,11 @@ extension ProductsViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let product = products[indexPath.row]
+        let productDetailsVC = storyboard?.instantiateViewController(withIdentifier: "ProductDetailsViewController") as! ProductDetailsViewController
+        productDetailsVC.product = product
+        productDetailsVC.productNameString = product.title
+        self.navigationController?.pushViewController(productDetailsVC, animated: true)
+    }
 }
