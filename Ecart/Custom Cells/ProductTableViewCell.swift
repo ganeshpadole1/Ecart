@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ProductTableViewCell: UITableViewCell {
 
@@ -27,6 +28,7 @@ class ProductTableViewCell: UITableViewCell {
     }
 
     func setup(_ product: Product) {
+        productImageView.sd_setImage(with: URL(string: product.imageURL), placeholderImage: UIImage(named: "placeholder.png"))
         productName.text = product.title
         productPrice.text = "\(product.price.first?.value ?? 0.0)"
     }
