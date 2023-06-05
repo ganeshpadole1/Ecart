@@ -12,6 +12,7 @@ class ProductDetailsViewController: UIViewController {
     var product: Product?
     var productNameString: String?
     
+    @IBOutlet weak var favoriuteButton: UIButton!
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productPrice: UILabel!
@@ -38,5 +39,11 @@ class ProductDetailsViewController: UIViewController {
         productName.text = product.title
         productPrice.text = "\(product.price.first?.value ?? 0.0)"
         productRatings.text = String(format: "%.2f", product.ratingCount)
+        
+        if product.isAddToCartEnable {
+            favoriuteButton.setImage(UIImage(systemName: "star"), for: .normal)
+        } else {
+            favoriuteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        }
     }
 }

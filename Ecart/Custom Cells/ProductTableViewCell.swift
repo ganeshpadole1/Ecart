@@ -16,6 +16,8 @@ class ProductTableViewCell: UITableViewCell {
     @IBOutlet weak var addToCartButton: UIButton!
     @IBOutlet weak var favoriuteButton: UIButton!
     
+    var buttonPressed : (() -> ()) = {}
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -31,6 +33,10 @@ class ProductTableViewCell: UITableViewCell {
         productImageView.sd_setImage(with: URL(string: product.imageURL), placeholderImage: UIImage(named: "placeholder.png"))
         productName.text = product.title
         productPrice.text = "Price: \(product.price.first?.value ?? 0.0)"
+    }
+    
+    @IBAction func favoriuteButtonPressed(_ sender: UIButton) {
+        buttonPressed()
     }
 }
 

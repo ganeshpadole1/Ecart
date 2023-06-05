@@ -19,6 +19,7 @@ struct Product: Decodable {
     let title: String
     let imageURL: String
     let ratingCount: Double
+    var isAddToCartEnable: Bool // using this boolean value for favourite button 
     let price: [Price]
 }
 

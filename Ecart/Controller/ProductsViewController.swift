@@ -46,7 +46,16 @@ extension ProductsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell") as! ProductTableViewCell
-        let product = products[indexPath.row]
+        var product = products[indexPath.row]
+        cell.buttonPressed = { [weak self] in
+            product.isAddToCartEnable.toggle()
+           
+            if product.isAddToCartEnable {
+                cell.favoriuteButton.setImage(UIImage(systemName: "star"), for: .normal)
+            } else {
+                cell.favoriuteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            }
+        }
         cell.setup(product)
         return cell
     }

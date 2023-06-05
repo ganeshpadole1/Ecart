@@ -85,6 +85,9 @@
                                                                             </constraints>
                                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                             <state key="normal" image="star" catalog="system"/>
+                                                                            <connections>
+                                                                                <action selector="favoriuteButtonPressed:" destination="QlJ-b7-ec4" eventType="touchUpInside" id="oAr-ld-hId"/>
+                                                                            </connections>
                                                                         </button>
                                                                     </subviews>
                                                                 </stackView>
@@ -235,6 +238,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="favoriuteButton" destination="Lz7-wR-XM3" id="h6Z-N8-mMX"/>
                         <outlet property="productImageView" destination="ZdY-Hz-L93" id="PRY-Gb-eSu"/>
                         <outlet property="productName" destination="qla-LA-ZW2" id="TR0-T1-CUq"/>
                         <outlet property="productPrice" destination="5q9-V3-LHa" id="Lcx-Cu-nvI"/>
