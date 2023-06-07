@@ -11,11 +11,11 @@ struct Constants {
     let baseURL = "https://run.mocky.io/v3/2f06b453-8375-43cf-861a-06e95a951328"
 }
 
-struct ProductList: Decodable {
+class ProductList: Decodable {
     var products: [Product]
 }
 
-struct Product: Decodable {
+class Product: Decodable {
     let title: String
     let imageURL: String
     let ratingCount: Double
@@ -24,6 +24,6 @@ struct Product: Decodable {
     let price: [Price]
 }
 
-struct Price: Decodable {
+class Price: Decodable {
     let value: Double
 }

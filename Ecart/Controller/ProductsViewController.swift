@@ -46,16 +46,15 @@ extension ProductsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell") as! ProductTableViewCell
-        var product = products[indexPath.row]
-        cell.buttonPressed = { [weak self] in
+        let product = products[indexPath.row]
+      
+        cell.buttonPressed = {
             product.isAddToCartEnable.toggle()
-           
-            if product.isAddToCartEnable {
-                cell.favoriuteButton.setImage(UIImage(systemName: "star"), for: .normal)
-            } else {
-                cell.favoriuteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            }
+            self.updateCell(cell, product: product)
         }
+        
+        self.updateCell(cell, product: product)
+        
         cell.setup(product)
         return cell
     }
@@ -66,5 +65,13 @@ extension ProductsViewController: UITableViewDataSource, UITableViewDelegate {
         productDetailsVC.product = product
         productDetailsVC.productNameString = product.title
         self.navigationController?.pushViewController(productDetailsVC, animated: true)
+    }
+    
+    func updateCell(_ cell: ProductTableViewCell, product: Product) {
+        if product.isAddToCartEnable {
+            cell.favoriuteButton.setImage(UIImage(systemName: "star"), for: .normal)
+        } else {
+            cell.favoriuteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        }
     }
 }
