@@ -70,8 +70,10 @@ extension ProductsViewController: UITableViewDataSource, UITableViewDelegate {
     func updateCell(_ cell: ProductTableViewCell, product: Product) {
         if product.isAddToCartEnable {
             cell.favoriuteButton.setImage(UIImage(systemName: "star"), for: .normal)
+            FavouriteProductManager.shared.removeFavourite(product)
         } else {
             cell.favoriuteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            FavouriteProductManager.shared.addFavourite(product)
         }
     }
 }

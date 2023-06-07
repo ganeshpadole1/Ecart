@@ -15,7 +15,11 @@ class ProductList: Decodable {
     var products: [Product]
 }
 
-class Product: Decodable {
+class Product: Decodable, Equatable {
+    static func == (lhs: Product, rhs: Product) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     let title: String
     let imageURL: String
     let ratingCount: Double
