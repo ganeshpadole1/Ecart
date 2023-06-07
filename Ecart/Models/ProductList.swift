@@ -12,14 +12,15 @@ struct Constants {
 }
 
 struct ProductList: Decodable {
-    let products: [Product]
+    var products: [Product]
 }
 
 struct Product: Decodable {
     let title: String
     let imageURL: String
     let ratingCount: Double
-    var isAddToCartEnable: Bool // using this boolean value for favourite button 
+    var isAddToCartEnable: Bool // using this boolean value for favourite button
+    let id: String
     let price: [Price]
 }
 
