@@ -8,7 +8,7 @@
 import UIKit
 
 class ProductsViewController: UIViewController {
-
+    
     var products: [Product] = [] {
         didSet {
             productTableView.reloadData()
@@ -19,9 +19,17 @@ class ProductsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = "Products"
+        productTableView.rowHeight = 125
+        productTableView.estimatedRowHeight = UITableView.automaticDimension
+        
         fetchProducts()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
     
     func fetchProducts() {
@@ -47,13 +55,13 @@ extension ProductsViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell") as! ProductTableViewCell
         let product = products[indexPath.row]
-      
+        
         cell.buttonPressed = {
             product.isAddToCartEnable.toggle()
-            self.updateCell(cell, product: product)
+            self.updateCell(cell, product: product, isButtonPressed: true)
         }
         
-        self.updateCell(cell, product: product)
+        self.updateCell(cell, product: product, isButtonPressed: false)
         
         cell.setup(product)
         return cell
@@ -67,13 +75,17 @@ extension ProductsViewController: UITableViewDataSource, UITableViewDelegate {
         self.navigationController?.pushViewController(productDetailsVC, animated: true)
     }
     
-    func updateCell(_ cell: ProductTableViewCell, product: Product) {
+    func updateCell(_ cell: ProductTableViewCell, product: Product, isButtonPressed: Bool) {
         if product.isAddToCartEnable {
             cell.favoriuteButton.setImage(UIImage(systemName: "star"), for: .normal)
-            FavouriteProductManager.shared.removeFavourite(product)
+            if isButtonPressed {
+                FavouriteProductManager.shared.removeFavourite(product)
+            }
         } else {
             cell.favoriuteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            FavouriteProductManager.shared.addFavourite(product)
+            if isButtonPressed {
+                FavouriteProductManager.shared.addFavourite(product)
+            }
         }
     }
 }

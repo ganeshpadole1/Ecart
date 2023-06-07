@@ -23,9 +23,13 @@ class FavouriteProductManager {
     }
     
     func removeFavourite(_ product: Product) {
-        if let index = favouriteProducts.firstIndex(of: product) {
-            favouriteProducts.remove(at: index)
-        }
+        
+        
+        let productIndex = favouriteProducts.firstIndex(where: {$0 === product})
+        print("productIndex: \(productIndex)")
+        
+//        let product = favouriteProducts.index(where: { $0 === product })!
+        favouriteProducts.remove(at: productIndex!)
     }
     
     func getAllFavouriteProducts() -> [Product] {
